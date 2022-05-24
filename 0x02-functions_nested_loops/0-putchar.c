@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * main - Identifies whether n is positive or negative.
+ * main - The program begins running here.
  *
  * Return: Always 0
  */
@@ -17,5 +17,5 @@ int main(void)
 	_putchar(114);
 	_putchar(10);
 
-	return 0;
+	return (0);
 }
