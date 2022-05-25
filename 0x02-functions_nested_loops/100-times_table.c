@@ -22,13 +22,13 @@ void print_times_table(int n)
 
 				_putchar(',');
 				_putchar(' ');
-				if ((ab / 100) > 0)
+				if ((ab / 100) > 0)	/* Assigns 100s place digit */
 					_putchar((ab / 100) + '0');
 				else
 					_putchar(' ');
-				if ((ab / 10) > 0)
+				if ((ab / 10) > 0)	/* Assigns 10s place digit */
 				{
-					if (b <= 9)
+					if ((ab / 10) < 10)
 						_putchar((ab / 10) + '0');
 					else
 						_putchar(((ab / 10) % 10) + '0');
