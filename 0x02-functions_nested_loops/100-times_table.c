@@ -18,12 +18,12 @@ void print_times_table(int n)
 		for (a = 0; a <= n; a++)
 		{
 			_putchar('0');
-			_putchar(',');
-			_putchar(' ');
 			for (b = 1; b <= n; b++)
 			{
 				int ab = a * b;
 
+				_putchar(',');
+				_putchar(' ');
 				if ((ab / 100) > 0)
 					_putchar((ab / 100) + '0');
 				else
@@ -38,11 +38,6 @@ void print_times_table(int n)
 				else
 					_putchar(' ');
 				_putchar((ab % 10) + '0');
-				if (b < n)
-				{
-					_putchar(',');
-					_putchar(' ');
-				}
 			}
 			_putchar('\n');
 		}
