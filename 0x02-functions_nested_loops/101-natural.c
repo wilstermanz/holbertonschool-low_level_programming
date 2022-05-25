@@ -10,7 +10,7 @@ int main(void)
 	int i;
 	int output = 0;
 
-	for (i = 1; i< 1024; i++)
+	for (i = 1; i < 1024; i++)
 	{
 		if (i % 15 == 0)
 			output = output + i;
