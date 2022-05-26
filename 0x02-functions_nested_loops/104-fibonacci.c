@@ -7,31 +7,31 @@
 
 int main(void)
 {
-	unsigned long long int a = 1;
-	unsigned long long int b = 2;
-	unsigned long long int c = a + b;
+	unsigned long int a = 1;
+	unsigned long int b = 2;
+	unsigned long int c = a + b;
 	int i;
 
-	printf("%llu, %llu, %llu, ", a, b, c);
+	printf("%lu, %lu, %lu, ", a, b, c);
 
-	for (i = 4; i < 98; i++)
+	for (i = 4; i <= 98; i++)
 	{
 		if ((i + 2) % 3 == 0)
 		{
 			a = b + c;
-			printf("%llu", a);
+			printf("%lu", a);
 		}
 		else if ((i + 1) % 3 == 0)
 		{
 			b = c + a;
-			printf("%llu", b);
+			printf("%lu", b);
 		}
 		else if (i % 3 == 0)
 		{
 			c = a + b;
-			printf("%llu", c);
+			printf("%lu", c);
 		}
-		if (i < 97)
+		if (i < 98)
 			printf(", ");
 		else
 			printf("\n");
