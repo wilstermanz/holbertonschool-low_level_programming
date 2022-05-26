@@ -32,6 +32,7 @@ int main(void)
 			printf("%li, ", c);
 		}
 	}
+	b = c + a;
 	printf("%li\n", b);
 	return (0);
 }
