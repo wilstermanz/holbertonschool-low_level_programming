@@ -18,6 +18,6 @@ int _isupper(int c)
 	{
 		o = 0;
 	}
-	
+
 	return (o);
 }
