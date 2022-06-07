@@ -3,13 +3,13 @@
 /**
  * _strpbrk - seaches a string for any set of bytes
  * @s: input string to be searched
- * @accept: string to be searched for
+ * @accept: string to search from
  * Return: pointer to byte s that matches accept, or NULL
  */
 
 char *_strpbrk(char *s, char *accept)
 {
-	int i;
+	int i, brk = 0;
 
 	while (*s)
 	{
@@ -17,13 +17,15 @@ char *_strpbrk(char *s, char *accept)
 		{
 			if (*s == accept[i])
 			{
+				brk = 1;
 				break;
 			}
 		}
-		if (accept[i] != '\0')
+		if (brk)
 			break;
 		s++;
 	}
+
 	if (*s == accept[i])
 		return (s);
 	else
