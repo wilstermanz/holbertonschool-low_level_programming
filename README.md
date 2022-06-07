@@ -1,2 +1,1 @@
-# holbertonschool-low_level_programming
-This repo will contain the files for the projects for our C course.
+Readme for 0x07-pointers_arrays_strings
