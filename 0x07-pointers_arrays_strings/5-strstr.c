@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
  * _strstr - finds the first occurance of needle in haystack
  * @haystack: string to be searched
@@ -9,17 +9,21 @@
 
 char *_strstr(char *haystack, char *needle)
 {
-	int i, j;
+	int i = 0, j;
 
-	for (i = 0; *(haystack + i); i++)
+	while (*(haystack + i))
 	{
-		if (*(haystack + i) == *needle)
+		j = 0;
+		while(*(needle + j))
 		{
-			for (j = 0; *(needle + j) == *(haystack + i + j); j++)
-			{};
-			if (*(needle + j) == '\0')
-				return (haystack + i);
+			if (*(needle + j) != *(haystack + i + j))
+				break;
+			j++;
 		}
+		if (*(needle + j) == '\0')
+			return (haystack + i);
+		i++;
 	}
+
 	return (0);
 }
