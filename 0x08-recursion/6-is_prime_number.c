@@ -9,12 +9,11 @@
 
 int checker(int n, int i)
 {
-	if (n - 1 == i)
+	if (n / 2 == i)
 		return (1);
 	if (n % i == 0)
 		return (0);
-	i++;
-	return (checker(n, i));
+	return (checker(n, i + 1));
 }
 
 /**
