@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-gcc -c *.c
-ar rc liball.a *.c
+gcc -c *.c; ar -rc liball.a *.c
