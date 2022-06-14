@@ -17,21 +17,19 @@ int main(int argc, char *argv[])
 		printf("%i\n", 0);
 	else
 	{
-		for (i = 1; i < argc; ++i)
+		for (i = 1; i < argc; i++)
 		{
 			for (j = 0; argv[i][j] != '\0'; j++)
 			{
 				if (argv[i][j] >= 48 && argv[i][j] <= 57)
-				{
-					sum = sum + atoi(argv[i]);
-					break;
-				}
+				{}
 				else
 				{
 					printf("Error\n");
 					return (1);
 				}
 			}
+			sum = sum + atoi(argv[i]);
 		}
 		printf("%i\n", sum);
 	}
