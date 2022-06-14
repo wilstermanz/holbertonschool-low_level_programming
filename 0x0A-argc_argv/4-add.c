@@ -27,7 +27,10 @@ int main(int argc, char *argv[])
 					break;
 				}
 				else
+				{
+					printf("Error\n");
 					return (1);
+				}
 			}
 		}
 		printf("%i\n", sum);
