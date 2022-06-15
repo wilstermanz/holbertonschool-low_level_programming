@@ -8,9 +8,9 @@
  * Return: Number of coins in total
  */
 
-int changemaker(int total)
+long int changemaker(long int total)
 {
-	int coins = 0, value = 0;
+	long int coins = 0, value = 0;
 
 	while (value < total)
 	{
@@ -52,7 +52,7 @@ int changemaker(int total)
 
 int main(int argc, char *argv[])
 {
-	int total;
+	long int total;
 
 	if (argc != 2)
 	{
@@ -63,6 +63,6 @@ int main(int argc, char *argv[])
 	if (total < 0)
 		printf("%i\n", 0);
 	else
-		printf("%i\n", changemaker(total));
+		printf("%li\n", changemaker(total));
 	return (0);
 }
