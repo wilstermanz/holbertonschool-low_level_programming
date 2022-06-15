@@ -29,6 +29,11 @@ int changemaker(int total)
 			value += 5;
 			coins++;
 		}
+		while (value + 2 <= total)
+		{
+			value += 2;
+			coins++;
+		}
 		while (value + 1 <= total)
 		{
 			value += 1;
