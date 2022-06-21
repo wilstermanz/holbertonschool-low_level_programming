@@ -32,20 +32,21 @@ void *checks_for_null(char *str)
 
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int i, j, size = 0;
+	unsigned int i, j, size1 = 0, size2 = 0;
 	char *s3;
 
 	s1 = checks_for_null(s1);
 	s2 = checks_for_null(s2);
 
+	for (i = 0; s1[i]; i++)
+		size1++;
 	for (i = 0; s2[i]; i++)
-		size++;
+		size2++;
 
-	if (size > n)
-		s3 = malloc(sizeof(s1) + size * sizeof(char));
+	if (size2 > n)
+		s3 = malloc((size1 + size2) * sizeof(char));
 	else
-		s3 = malloc(sizeof(s1) + n * sizeof(char));
-
+		s3 = malloc((size1 + n)  * sizeof(char));
 	if (s3 == NULL)
 	{
 		free(s3);
@@ -54,9 +55,8 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 
 	for (i = 0; s1[i]; i++)
 		s3[i] = s1[i];
-	for (j = 0; j < n && j < size; j++)
+	for (j = 0; j < n && j < size2; j++)
 		s3[j + i] = s2[j];
-
 	s3[i + j] = '\0';
 
 	return (s3);
