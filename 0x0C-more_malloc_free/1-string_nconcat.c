@@ -2,21 +2,6 @@
 #include <stdlib.h>
 
 /**
- * _strlen - counts bytes in string
- * @str: input string
- * Return: length of string
- */
-
-int _strlen(char *str)
-{
-	int i, size = 0;
-
-	for (i = 0; str[i]; i++)
-		size++;
-	return (size);
-}
-
-/**
  * string_nconcat - concatenates two strings
  * @s1: first string
  * @s2: second string
@@ -26,33 +11,34 @@ int _strlen(char *str)
 
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int i, j, size1, size2;
-	char *cat;
+	unsigned int size, i, j;
+	char *out;
 
 	if (s1 == NULL)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
+	
+	size = 0;
+	while (s1[size])
+		size++;
 
-	size1 = _strlen(s1);
-	size2 = _strlen(s2);
+	out = malloc(sizeof(*out) * size + n + 1);
 
-	if (n > size2)
-		cat = malloc(size1 + (n * sizeof(*s2) + 1) * sizeof(*cat));
-	else
-		cat = malloc(size1 + (size2 * sizeof(*s2) + 1) * sizeof(*cat));
-
-	if (cat == NULL)
-	{
-		free(cat);
+	if (out == NULL)
 		return (NULL);
+
+	for (i = 0, j = 0; i < (size + n); i++)
+	{
+		if (i < size)
+		{
+			out[i] = s1[i];
+		}
+		else
+		{
+			out[i] = s2[j++];
+		}
 	}
-
-	for (i = 0; s1[i]; i++)
-		cat[i] = s1[i];
-	for (j = 0; s2[j] && j < n; j++, i++)
-		cat[i] = s2[j];
-	cat[i] = '\0';
-
-	return (cat);
+	out[i] = '\0';
+	return (out);
 }
