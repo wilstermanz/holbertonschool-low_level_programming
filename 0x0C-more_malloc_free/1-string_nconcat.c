@@ -24,16 +24,18 @@ int _strlen(char *str)
 
 void *checks_for_null(char *str)
 {
+	if (str != NULL)
+		return (str);
+
+	str = malloc(1);
+
 	if (str == NULL)
 	{
-		str = malloc(1);
-		if (str == NULL)
-		{
-			free(str);
-			return (NULL);
-		}
-		str[0] = '\0';
+		free(str);
+		return (NULL);
 	}
+	str[0] = '\0';
+
 	return (str);
 }
 
@@ -61,7 +63,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 
 	if (n < size2)
 		cat = malloc(size1 + n + 1);
-	if (n > size2)
+	if (n >= size2)
 		cat = malloc(size1 + size2 + 1);
 	if (cat == NULL)
 	{
