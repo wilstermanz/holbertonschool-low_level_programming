@@ -17,29 +17,6 @@ int _strlen(char *str)
 }
 
 /**
- * checks_for_null - Makes zero length string if input pointer is NULL
- * @str: input pointer
- * Return: pointer to string
- */
-
-void *checks_for_null(char *str)
-{
-	if (str != NULL)
-		return (str);
-
-	str = malloc(1);
-
-	if (str == NULL)
-	{
-		free(str);
-		return (NULL);
-	}
-	str[0] = '\0';
-
-	return (str);
-}
-
-/**
  * string_nconcat - concatenates two strings
  * @s1: first string
  * @s2: second string
@@ -52,19 +29,16 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	unsigned int i, j, size1, size2;
 	char *cat;
 
-	s1 = checks_for_null(s1);
-	s2 = checks_for_null(s2);
-
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
+	if (s1 == NULL)
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
 
 	size1 = _strlen(s1);
 	size2 = _strlen(s2);
 
-	if (n < size2)
-		cat = malloc(size1 + n + 1);
-	if (n >= size2)
-		cat = malloc(size1 + size2 + 1);
+	cat = malloc(size1 + (n * sizeof(*s2)) * sizeof(*cat));
+	
 	if (cat == NULL)
 	{
 		free(cat);
@@ -73,9 +47,9 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 
 	for (i = 0; i < size1; i++)
 		cat[i] = s1[i];
-	for (j = 0; j < n && j < size2; j++)
-		cat[i + j] = s2[j];
-	cat[i + j] = '\0';
+	for (j = 0; j < n && j < size2; j++, i++)
+		cat[i] = s2[j];
+	cat[i] = '\0';
 
 	return (cat);
 }
