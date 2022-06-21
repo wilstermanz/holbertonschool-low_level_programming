@@ -10,23 +10,25 @@
 
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
-	unsigned int i;
-	char *arr;
+	unsigned int i, totsize;
+	char *out;
 
-	if (nmemb == 0 || size == 0)
+	totsize = nmemb * size;
+
+	if (totsize == 0)
 		return (NULL);
 
-	arr = malloc(nmemb * sizeof(size));
-	if (arr == NULL)
+	out = malloc(totsize);
+	if (out == NULL)
 	{
-		free(arr);
+		free(out);
 		return (NULL);
 	}
 
-	for (i = 0; i < sizeof(arr); i++)
+	for (i = 0; i < totsize; i++)
 	{
-		arr[i] = 0;
+		out[i] = 0;
 	}
-		
-	return (arr);
+
+	return (out);
 }
