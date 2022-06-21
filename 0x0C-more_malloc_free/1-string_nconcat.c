@@ -13,7 +13,7 @@ int _strlen(char *str)
 
 	for (i = 0; str[i]; i++)
 		size++;
-	return(size);
+	return (size);
 }
 
 /**
@@ -30,7 +30,7 @@ void *checks_for_null(char *str)
 		if (str == NULL)
 		{
 			free(str);
-			return(NULL);
+			return (NULL);
 		}
 		str[0] = '\0';
 	}
