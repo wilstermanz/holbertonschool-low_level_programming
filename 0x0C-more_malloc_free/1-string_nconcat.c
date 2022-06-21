@@ -2,51 +2,60 @@
 #include <stdlib.h>
 
 /**
- * string_nconcat - function that concatenates two strings
- *
- * @s1: string 1
- * @s2: string 2
- * @n: bytes of @s2 to add to @s1 to be a new string
- *
- * Return: new string followed by the first @n bytes
- *         of string 2 @s2 or NULL
-*/
+ * _strlen - counts bytes in string
+ * @str: input string
+ * Return: length of string
+ */
+
+int _strlen(char *str)
+{
+	int i, size = 0;
+
+	for (i = 0; str[i]; i++)
+		size++;
+	return (size);
+}
+
+/**
+ * string_nconcat - concatenates two strings
+ * @s1: first string
+ * @s2: second string
+ * @n: numbers of bytes of s2 to concatenate
+ * Return: pointer to concatenated string, or NULL if fail
+ */
 
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int l1, l2, i, j;
-	char *str;
+	unsigned int i, j, size1, size2;
+	char *cat, *junk;
 
-	/*treat NULL as empty string*/
+	junk = malloc(5);
+	free(junk);
+
 	if (s1 == NULL)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
 
-	l1 = l2 = 0;
-	/*length of both s1 & s2 respectively*/
-	while (s1[l1] != '\0')
-		l1++;
-	while (s2[l2] != '\0')
-		l2++;
+	size1 = _strlen(s1);
+	size2 = _strlen(s2);
 
-	/*set n to length of s2*/
-	if (n >= l2)
-		n = l2;
+	if (n > size2)
+		cat = malloc(size1 + (n * sizeof(*s2) + 1) * sizeof(*cat));
+	else
+		cat = malloc(size1 + (size2 * sizeof(*s2) + 1) * sizeof(*cat));
 
-	str = (char *) malloc((l1 + n + 1) * sizeof(char));
-	if (str == NULL)
-		return (NULL);
-
-	/*add s1 to str*/
-	for (i = 0; s1[i] != '\0'; i++)
-		str[i] = s1[i];
-	/*add s2 n bytes to str*/
-	for (j = 0; j < n && s2[j] != '\0'; j++)
+	if (cat == NULL)
 	{
-		str[i] = s2[j];
-		i++;
+		free(cat);
+		return (NULL);
 	}
-	str[i] = '\0';
-	return (str);
+
+	for (i = 0; s1[i]; i++)
+		cat[i] = s1[i];
+	for (j = 0; s2[j] && j < n; j++, i++)
+		cat[i] = s2[j];
+	cat[i] = '\0';
+
+	return (cat);
 }
