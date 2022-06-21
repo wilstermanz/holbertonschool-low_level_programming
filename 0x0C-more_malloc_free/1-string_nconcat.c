@@ -9,7 +9,7 @@
 
 int _strlen(char *str)
 {
-	int i, size;
+	int i, size = 0;
 
 	for (i = 0; str[i]; i++)
 		size++;
@@ -59,9 +59,9 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	size1 = _strlen(s1);
 	size2 = _strlen(s2);
 
-	if (n > size2)
-		cat = malloc(size1 + n + 1);
 	if (n < size2)
+		cat = malloc(size1 + n + 1);
+	if (n > size2)
 		cat = malloc(size1 + size2 + 1);
 	if (cat == NULL)
 	{
