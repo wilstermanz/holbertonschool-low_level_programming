@@ -42,9 +42,9 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		size++;
 
 	if (size > n)
-		s3 = malloc(sizeof(s1) + sizeof(n));
+		s3 = malloc(sizeof(s1) + size * sizeof(char));
 	else
-		s3 = malloc(sizeof(s1) + sizeof(s2));
+		s3 = malloc(sizeof(s1) + n * sizeof(char));
 
 	if (s3 == NULL)
 	{
@@ -54,7 +54,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 
 	for (i = 0; s1[i]; i++)
 		s3[i] = s1[i];
-	for (j = 0; j < size; j++)
+	for (j = 0; j < n && j < size; j++)
 		s3[j + i] = s2[j];
 
 	s3[i + j] = '\0';
