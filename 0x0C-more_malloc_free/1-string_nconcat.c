@@ -13,7 +13,10 @@ void *checks_for_null(char *str)
 	{
 		str = malloc(1);
 		if (str == NULL)
+		{
+			free(str);
 			exit(1);
+		}
 		*str = '\0';
 	}
 	return (str);
@@ -42,7 +45,10 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		s3 = malloc(sizeof(s1) + sizeof(s2));
 
 	if (s3 == NULL)
+	{
+		free(s3);
 		return (NULL);
+	}
 
 	for (i = 0; s1[i]; i++)
 		s3[i] = s1[i];
