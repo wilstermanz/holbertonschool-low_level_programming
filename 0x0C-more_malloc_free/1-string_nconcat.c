@@ -2,6 +2,21 @@
 #include <stdlib.h>
 
 /**
+ * _strlen - counts bytes in string
+ * @str: input string
+ * Return: length of string
+ */
+
+int _strlen(char *str)
+{
+	int i, size;
+
+	for (i = 0; str[i]; i++)
+		size++;
+	return(size);
+}
+
+/**
  * checks_for_null - Makes zero length string if input pointer is NULL
  * @str: input pointer
  * Return: pointer to string
@@ -15,9 +30,9 @@ void *checks_for_null(char *str)
 		if (str == NULL)
 		{
 			free(str);
-			exit(1);
+			return(NULL);
 		}
-		*str = '\0';
+		str[0] = '\0';
 	}
 	return (str);
 }
@@ -32,31 +47,33 @@ void *checks_for_null(char *str)
 
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int i, j, size1 = 0, size2 = 0;
-	char *s3;
+	unsigned int i, j, size1, size2;
+	char *cat;
 
 	s1 = checks_for_null(s1);
 	s2 = checks_for_null(s2);
 
-	for (i = 0; s1[i]; i++)
-		size1++;
-	for (i = 0; s2[i]; i++)
-		size2++;
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
 
-	if (size2 > n)
-		s3 = malloc((size1 + size2) * sizeof(char));
-	else
-		s3 = malloc((size1 + n)  * sizeof(char));
-	if (s3 == NULL)
+	size1 = _strlen(s1);
+	size2 = _strlen(s2);
+
+	if (n > size2)
+		cat = malloc(size1 + n + 1);
+	if (n < size2)
+		cat = malloc(size1 + size2 + 1);
+	if (cat == NULL)
 	{
-		free(s3);
+		free(cat);
 		return (NULL);
 	}
 
-	for (i = 0; s1[i]; i++)
-		s3[i] = s1[i];
-	for (j = 0; j <= n && j <= size2; j++)
-		s3[j + i] = s2[j];
+	for (i = 0; i < size1; i++)
+		cat[i] = s1[i];
+	for (j = 0; j < n && j < size2; j++)
+		cat[i + j] = s2[j];
+	cat[i + j] = '\0';
 
-	return (s3);
+	return (cat);
 }
