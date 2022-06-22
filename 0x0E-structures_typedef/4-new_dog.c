@@ -27,14 +27,10 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 	/* Allocate space and check for errors */
 	my_dog = malloc(sizeof(*my_dog));
-	nameCopy = malloc(_strlen((name) + 1) * sizeof(*name));
-	ownerCopy = malloc(_strlen((owner) + 1) * sizeof(*owner));
 	if (my_dog == NULL || nameCopy == NULL || ownerCopy == NULL)
 	{
 		free(name);
 		free(owner);
-		free(nameCopy);
-		free(ownerCopy);
 		free(my_dog);
 		return (NULL);
 	}
@@ -80,7 +76,10 @@ char *_strdup(char *str)
 
 	cpy = malloc((strlen + 1) * sizeof(char));
 	if (cpy == NULL)
+	{
+		free(cpy);
 		return (NULL);
+	}
 
 	for (i = 0; str[i]; i++)
 		cpy[i] = str[i];
