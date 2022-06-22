@@ -16,13 +16,11 @@ dog_t *new_dog(char *name, float age, char *owner)
 	/* declarations */
 	dog_t *my_dog;
 	char *nameCopy, *ownerCopy;
+	
 	/* Check for NULL input */
 	if (name == NULL || owner == NULL)
-	{
-		free(name);
-		free(owner);
 		return (NULL);
-	}
+	
 	/* Allocate space and check for errors */
 	my_dog = malloc(sizeof(*my_dog));
 	nameCopy = malloc(strlen((name) + 1) * sizeof(*name));
@@ -36,6 +34,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 		free(my_dog);
 		return (NULL);
 	}
+	
 	/* Set values */
 	strcpy(nameCopy, name);
 	strcpy(ownerCopy, owner);
