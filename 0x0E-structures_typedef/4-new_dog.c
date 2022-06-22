@@ -19,16 +19,14 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 	/* Check for NULL input */
 	if (name == NULL || owner == NULL)
-	{
-		free(name);
-		free(owner);
 		return (NULL);
-	}
 
 	/* Allocate space and check for errors */
 	my_dog = malloc(sizeof(*my_dog));
 	if (my_dog == NULL)
 	{
+		free(name);
+		free(owner);
 		free(my_dog);
 		return (NULL);
 	}
