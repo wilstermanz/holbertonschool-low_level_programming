@@ -3,6 +3,21 @@
 #include <stdio.h>
 
 /**
+ * _strlen - counts bytes in string
+ * @str: input string
+ * Return: length of string
+ */
+
+int _strlen(char *str)
+{
+	int i, size = 0;
+
+	for (i = 0; str[i]; i++)
+		size++;
+	return (size);
+}
+
+/**
  * new_dog - creates a new dog
  * @name: dog's name
  * @age: dog's age
@@ -25,11 +40,11 @@ dog_t *new_dog(char *name, float age, char *owner)
 	if (my_dog == NULL)
 		return (NULL);
 
-	nameCopy = malloc(strlen(name) * sizeof(*name) + 1);
+	nameCopy = malloc(_strlen(name) * sizeof(*name) + 1);
 	if (nameCopy == NULL)
 		return (NULL);
 
-	ownerCopy = malloc(strlen(owner) * sizeof(*owner) + 1);
+	ownerCopy = malloc(_strlen(owner) * sizeof(*owner) + 1);
 	if (ownerCopy == NULL)
 		return (NULL);
 
