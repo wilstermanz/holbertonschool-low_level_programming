@@ -27,7 +27,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 	/* Allocate space and check for errors */
 	my_dog = malloc(sizeof(*my_dog));
-	if (my_dog == NULL || nameCopy == NULL || ownerCopy == NULL)
+	if (my_dog == NULL)
 	{
 		free(name);
 		free(owner);
