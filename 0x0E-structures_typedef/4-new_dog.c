@@ -13,72 +13,70 @@
 
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	/* declarations */
-	dog_t *my_dog;
-	char *nameCopy, *ownerCopy;
+	/* Declaring variables */
+	dog_t *d;
+	char *nameCpy, *ownerCpy;
 
 	/* Check for NULL input */
 	if (name == NULL || owner == NULL)
 		return (NULL);
-
-	/* Allocate space and check for errors */
-	my_dog = malloc(sizeof(*my_dog));
-	if (my_dog == NULL)
+	/* Allocate space and check for errors*/
+	d = malloc(sizeof(dog_t));
+	if (d == NULL)
+		return (NULL);
+	nameCpy = malloc(sizeof(*nameCpy) * (_strlen(name) + 1));
+	ownerCpy = malloc(sizeof(*ownerCpy) * (_strlen(owner) + 1));
+	if (nameCpy == NULL || ownerCpy == NULL)
 	{
-		free(name);
-		free(owner);
-		free(my_dog);
+		free(d);
+		if (nameCpy)
+			free(nameCpy);
+		if (ownerCpy)
+			free(ownerCpy);
 		return (NULL);
 	}
 
-	/* Set values */
-	nameCopy = _strdup(name);
-	ownerCopy = _strdup(owner);
-	my_dog->name = nameCopy;
-	my_dog->age = age;
-	my_dog->owner = ownerCopy;
+	/* Copy strings */
+	_strcpy(nameCpy, name);
+	_strcpy(ownerCpy, owner);
 
-	return (my_dog);
+	/* Assign values */
+	d->name = nameCpy;
+	d->age = age;
+	d->owner = ownerCpy;
+	return (d);
+}
+
+
+/**
+ * _strlen - counts bytes in string
+ * @str: input string
+ * Return: length of string
+ */
+
+int _strlen(char *str)
+{
+	int i, size = 0;
+
+	for (i = 0; str[i]; i++)
+		size++;
+	return (size);
 }
 
 /**
- * _strlen - return the len of string *s
- * @s: a string.
- * Return: len of string.
+ * _strcpy - Copies a string
+ * @dest: array to be copied into
+ * @src: string to be copied
+ * Return: the pointer to dest
  */
-unsigned int _strlen(char *s)
+
+char *_strcpy(char *dest, char *src)
 {
-	unsigned int len = 0;
+	int i, j, count = 0;
 
-	while (*(s + len))
-		len++;
-	return (len);
-}
-
-/**
- * _strdup - returns a pointer to a copy of a string
- * @str: string to be copied
- * Return: Pointer to str copy, or NULL if error
- */
-char *_strdup(char *str)
-{
-	char *cpy;
-	int i, strlen = 0;
-
-	if (str == NULL)
-		return (NULL);
-	for (i = 0; str[i]; i++)
-		strlen++;
-
-	cpy = malloc((strlen + 1) * sizeof(char));
-	if (cpy == NULL)
-	{
-		free(cpy);
-		return (NULL);
-	}
-
-	for (i = 0; str[i]; i++)
-		cpy[i] = str[i];
-
-	return (cpy);
+	for (i = 0; src[i] != '\0'; i++)
+		count++;
+	for (j = 0; j <= count; j++)
+		dest[j] = src[j];
+	return (dest);
 }
