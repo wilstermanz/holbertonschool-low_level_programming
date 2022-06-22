@@ -30,7 +30,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 	/* declarations */
 	dog_t *my_dog;
 	char *nameCopy, *ownerCopy;
-
+	int i = 0;
 	/* Check for NULL input */
 	if (name == NULL || owner == NULL)
 	{
@@ -38,7 +38,6 @@ dog_t *new_dog(char *name, float age, char *owner)
 		free(owner);
 		return (NULL);
 	}
-
 	/* Allocate space and check for errors */
 	my_dog = malloc(sizeof(*my_dog));
 	nameCopy = malloc(_strlen((name) + 1) * sizeof(*name));
@@ -52,13 +51,20 @@ dog_t *new_dog(char *name, float age, char *owner)
 		free(my_dog);
 		return (NULL);
 	}
-
 	/* Set values */
-	nameCopy = name;
-	ownerCopy = owner;
+	while (*(name + i))
+	{
+		*(nameCopy + i) = *(name + i);
+		i++;
+	}
+	i = 0;
+	while (*(owner + i))
+	{
+		*(ownerCopy + i) = *(owner + i);
+		i++;
+	}
 	my_dog->name = nameCopy;
 	my_dog->age = age;
 	my_dog->owner = ownerCopy;
-
 	return (my_dog);
 }
