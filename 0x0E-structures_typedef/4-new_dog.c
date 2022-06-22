@@ -19,14 +19,20 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 	/* Check for NULL input */
 	if (name == NULL || owner == NULL)
+	{
+		free(name);
+		free(owner);
 		return (NULL);
+	}
 
 	/* Allocate space and check for errors */
 	my_dog = malloc(sizeof(*my_dog));
-	nameCopy = malloc(strlen((name) + 1) * sizeof(*name));
-	ownerCopy = malloc(strlen((owner) + 1) * sizeof(*owner));
+	nameCopy = malloc(_strlen((name) + 1) * sizeof(*name));
+	ownerCopy = malloc(_strlen((owner) + 1) * sizeof(*owner));
 	if (my_dog == NULL || nameCopy == NULL || ownerCopy == NULL)
 	{
+		free(name);
+		free(owner);
 		free(nameCopy);
 		free(ownerCopy);
 		free(my_dog);
@@ -34,10 +40,50 @@ dog_t *new_dog(char *name, float age, char *owner)
 	}
 
 	/* Set values */
-	strcpy(nameCopy, name);
-	strcpy(ownerCopy, owner);
-	my_dog->name = name;
+	nameCopy = _strdup(name);
+	ownerCopy = _strdup(owner);
+	my_dog->name = nameCopy;
 	my_dog->age = age;
-	my_dog->owner = owner;
+	my_dog->owner = ownerCopy;
+
 	return (my_dog);
+}
+
+/**
+ * _strlen - return the len of string *s
+ * @s: a string.
+ * Return: len of string.
+ */
+unsigned int _strlen(char *s)
+{
+	unsigned int len = 0;
+
+	while (*(s + len))
+		len++;
+	return (len);
+}
+
+/**
+ * _strdup - returns a pointer to a copy of a string
+ * @str: string to be copied
+ * Return: Pointer to str copy, or NULL if error
+ */
+char *_strdup(char *str)
+{
+	char *cpy;
+	int i, strlen = 0;
+
+	if (str == NULL)
+		return (NULL);
+	for (i = 0; str[i]; i++)
+		strlen++;
+
+	cpy = malloc((strlen + 1) * sizeof(char));
+	if (cpy == NULL)
+		return (NULL);
+
+	for (i = 0; str[i]; i++)
+		cpy[i] = str[i];
+
+	return (cpy);
 }
