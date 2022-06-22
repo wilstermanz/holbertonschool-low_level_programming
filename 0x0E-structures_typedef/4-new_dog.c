@@ -14,6 +14,11 @@ dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *my_dog;
 
+	if (name == NULL)
+		name = "";
+	if (owner == NULL)
+		owner = "";
+
 	my_dog = malloc(sizeof(*my_dog) * 3);
 	my_dog->name = malloc(sizeof(name));
 	my_dog->owner = malloc(sizeof(owner));
