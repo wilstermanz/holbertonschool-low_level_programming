@@ -14,8 +14,10 @@ int int_index(int *array, int size, int (*cmp)(int))
 {
 	int i, isMatch;
 
-	/* Check for valid size */
+	/* Check for valid input */
 	if (size <= 0)
+		return (-1);
+	if (array == NULL || cmp == NULL)
 		return (-1);
 
 	/* Iterate array through comparison function */
