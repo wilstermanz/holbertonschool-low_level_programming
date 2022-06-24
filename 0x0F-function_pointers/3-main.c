@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	/* Convert char input to int and check for operator errors */
+	/* Convert char input to int */
 	a = atoi(argv[1]);
 	b = atoi(argv[3]);
 
