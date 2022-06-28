@@ -22,6 +22,12 @@ void print_all(const char * const format, ...)
 	int i, j;
 	char *separator = "";
 
+	if (format == NULL)
+	{
+		printf("\n");
+		return;
+	}
+
 	va_start(ap, format);
 
 	i = 0;
