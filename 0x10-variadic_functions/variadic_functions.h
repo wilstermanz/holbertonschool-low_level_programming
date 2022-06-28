@@ -9,7 +9,7 @@ void print_strings(const char *separator, const unsigned int n, ...);
 void print_all(const char * const format, ...);
 
 /**
- * struct form _ struct form
+ * struct form - struct form
  *
  * @form: data format
  * @func: associated function
