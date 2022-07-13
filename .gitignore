@@ -3,3 +3,4 @@
 *main.c
 *.o
 a.out
+vgcore*
