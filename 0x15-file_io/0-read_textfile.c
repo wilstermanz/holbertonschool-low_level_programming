@@ -32,6 +32,8 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 
 	read(file, buff, letters);
+	if (buff[0] == '\0')
+		return (0);
 
 	count = 0;
 	while (buff[count] && count <= letters)
