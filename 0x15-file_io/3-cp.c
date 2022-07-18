@@ -40,10 +40,10 @@ int main(int argc, char **argv)
 
 /**
  * reader_writer - Reads from one file and writes to another
- * file_from: name of file to read from
- * from_fd: file descriptor of from file
- * file_to: name of file to write to
- * to_fd: file descriptor of to file
+ * @file_from: name of file to read from
+ * @from_fd: file descriptor of from file
+ * @file_to: name of file to write to
+ * @to_fd: file descriptor of to file
  * Return: void
  */
 
@@ -51,7 +51,7 @@ void reader_writer(char *file_from, int from_fd, char *file_to, int to_fd)
 {
 	int rd, wr;
 	char buffer[1024];
-	
+
 	rd = 1024;
 	while (rd == 1024)
 	{
