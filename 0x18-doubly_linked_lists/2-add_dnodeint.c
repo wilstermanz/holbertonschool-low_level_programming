@@ -2,10 +2,10 @@
 
 /**
  * add_dnodeint - Adds new node to beginning of dlistint_t list
- * 
+ *
  * @head: pointer to head node
  * @n: data to add to node
- * 
+ *
  * Return: address of new node, or NULL if failed.
  */
 
