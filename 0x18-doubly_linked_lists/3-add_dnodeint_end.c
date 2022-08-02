@@ -2,7 +2,7 @@
 
 /**
  * add_dnodeint_end - Adds new node to end of dlistint_t list
- * 
+ *
  * @head: pointer to head node.
  * @n: data to add to node.
  *
@@ -37,6 +37,6 @@ dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
 	}
 	newNode->prev = ptr;
 	ptr->next = newNode;
-	
+
 	return (newNode);
 }
