@@ -22,13 +22,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	index = key_index((const unsigned char *)key, ht->size);
 
-	checker = ht->array[index];
-	if (checker == NULL)
-	{
-		ht->array[index] = buildNode(key, value);
-		return (SUCCESS);
-	}
-
 	while (checker != NULL)
 	{
 		if (strcmp(key, checker->key) == 0)
