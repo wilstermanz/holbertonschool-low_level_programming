@@ -15,12 +15,12 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	hash_node_t *newNode;
 	unsigned long int index;
 
-	if (!ht || !key || !value)
+	if (!ht || !key || !value || (strcmp(key, "") == 0))
 	{
 		return (FAILURE);
 	}
 
-	newNode = malloc(sizeof(newNode));
+	newNode = malloc(sizeof(*newNode));
 	if (newNode == NULL)
 	{
 		return (FAILURE);
