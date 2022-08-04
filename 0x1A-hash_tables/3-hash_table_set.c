@@ -45,6 +45,14 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	return (SUCCESS);
 }
 
+/**
+ * buildNode - builds a new hash_node_t node
+ *
+ * @key: given key for new node
+ * @value: given value for new node
+ * Return: pointer to new node
+ */
+
 hash_node_t *buildNode(const char *key, const char *value)
 {
 	hash_node_t *newNode;
