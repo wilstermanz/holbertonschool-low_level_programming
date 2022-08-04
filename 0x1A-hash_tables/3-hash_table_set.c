@@ -12,34 +12,51 @@
 
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	hash_node_t *newNode;
+	hash_node_t *newNode, *checker;
 	unsigned long int index;
 
-	if (!ht || !key || !value || (strcmp(key, "") == 0))
+	if (!ht || !key || (strcmp(key, "") == 0))
 	{
 		return (FAILURE);
 	}
 
-	newNode = malloc(sizeof(*newNode));
+	index = key_index((const unsigned char *)key, ht->size);
+
+	checker = ht->array[index];
+	if (checker == NULL)
+	{
+		ht->array[index] = buildNode(key, value);
+		return (SUCCESS);
+	}
+
+	while (checker != NULL)
+	{
+		if (strcmp(key, checker->key) == 0)
+		{
+			free(checker->value);
+			checker->value = strdup(value);
+			return (SUCCESS);
+		}
+		checker = checker->next;
+	}
+	newNode = buildNode(key, value);
+	newNode->next = ht->array[index];
+	ht->array[index] = newNode;
+	return (SUCCESS);
+}
+
+hash_node_t *buildNode(const char *key, const char *value)
+{
+	hash_node_t *newNode;
+
+	newNode = malloc(sizeof(hash_node_t));
 	if (newNode == NULL)
 	{
-		return (FAILURE);
+		exit(FAILURE);
 	}
-
 	newNode->key = strdup(key);
 	newNode->value = strdup(value);
 	newNode->next = NULL;
 
-	index = key_index((const unsigned char *)key, ht->size);
-
-	if (ht->array[index] == NULL)
-	{
-		ht->array[index] = newNode;
-	}
-	if (ht->array[index] != NULL)
-	{
-		newNode->next = ht->array[index];
-		ht->array[index] = newNode;
-	}
-	return (SUCCESS);
+	return (newNode);
 }
