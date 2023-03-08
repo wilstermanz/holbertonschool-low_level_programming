@@ -44,11 +44,7 @@ int binary_recursion(int *array, int left, int right, int value)
 		{
 			return (binary_recursion(array, mid_point + 1, right, value));
 		}
-		if (array[mid_point] > value)
-		{
-			return (binary_recursion(array, left, mid_point - 1, value));
-		}
-		if (array[mid_point - 1] == value)
+		if (array[mid_point] > value || array[mid_point - 1] == value)
 		{
 			return (binary_recursion(array, left, mid_point, value));
 		}
