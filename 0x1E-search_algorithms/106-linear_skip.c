@@ -14,8 +14,10 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 	{
 		while (right->n <= value)
 		{
+			printf("Value checked at index [%d] = [%d]", right->index, right->n);
 			if (right->n == value)
 			{
+				printf("Found %d at index: %d", value, right->index);
 				return (right);
 			}
 			left = right;
@@ -23,8 +25,10 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 		}
 		while (left->n <= value)
 		{
+			printf("Value checked at index [%d] = [%d]", left->index, left->n);
 			if (left->n == value)
 			{
+				printf("Found %d at index: %d", value, left->index);
 				return (left);
 			}
 			left = left->next;
